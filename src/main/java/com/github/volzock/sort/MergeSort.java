@@ -1,4 +1,4 @@
-package com.github.volzock;
+package com.github.volzock.sort;
 
 import lombok.NonNull;
 

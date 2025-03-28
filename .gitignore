@@ -119,3 +119,4 @@ fabric.properties
 /target/test-classes/com/github/volzock/AppTest.class
 /target/classes/com/github/volzock/MergeSort$SortTaskInformation.class
 /target/classes/com/github/volzock/MergeSort.class
+./target

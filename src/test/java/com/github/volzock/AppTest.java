@@ -1,8 +1,8 @@
 package com.github.volzock;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.github.volzock.sort.MergeSort;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
