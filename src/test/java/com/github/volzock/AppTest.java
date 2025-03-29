@@ -3,6 +3,7 @@ package com.github.volzock;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import com.github.volzock.sort.MergeSort;
+import com.github.volzock.sort.parallel.ParallelMergeSort;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -92,6 +93,91 @@ public class AppTest {
         System.arraycopy(arr, 0, expected, 0, arr.length);
 
         MergeSort.sort(arr);
+        Arrays.sort(expected);
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    public void emptyArrayParallel() {
+        int[] arr = {};
+        int[] expected = {};
+        ParallelMergeSort.sort(arr);
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    public void oneSizeArrayParallel() {
+        int[] arr = {1};
+        int[] expected = {1};
+        ParallelMergeSort.sort(arr);
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    public void SizeOfTwoArrayParallel() {
+        int[] arr = {2, 1};
+        int[] expected = {1, 2};
+        ParallelMergeSort.sort(arr);
+        assertArrayEquals(expected, arr);
+
+        ParallelMergeSort.sort(arr);
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    public void SizeOfThreeArrayParallel() {
+        int[] arr = {3, 2, 1};
+        int[] expected = {1, 2, 3};
+        ParallelMergeSort.sort(arr);
+        assertArrayEquals(expected, arr);
+
+        arr = new int[]{2, 1, 3};
+        ParallelMergeSort.sort(arr);
+        assertArrayEquals(expected, arr);
+
+        ParallelMergeSort.sort(arr);
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    public void SizeOfFiveArrayParallel() {
+        int[] arr = {3, 5, 2, 1, 4};
+        int[] expected = {1, 2, 3, 4, 5};
+        ParallelMergeSort.sort(arr);
+        assertArrayEquals(expected, arr);
+        ParallelMergeSort.sort(arr);
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    public void SizeOfOneHundredArrayParallel() {
+        int[] arr = randomArray(100);
+        int[] expected = new int[100];
+        System.arraycopy(arr, 0, expected, 0, arr.length);
+
+        ParallelMergeSort.sort(arr);
+        Arrays.sort(expected);
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    public void SizeOfOneThousandArrayParallel() {
+        int[] arr = randomArray(1000);
+        int[] expected = new int[1000];
+        System.arraycopy(arr, 0, expected, 0, arr.length);
+
+        ParallelMergeSort.sort(arr);
+        Arrays.sort(expected);
+        assertArrayEquals(expected, arr);
+    }
+
+    @Test
+    public void SizeOfTenHundredArrayParallel() {
+        int[] arr = randomArray(10000);
+        int[] expected = new int[10000];
+        System.arraycopy(arr, 0, expected, 0, arr.length);
+
+        ParallelMergeSort.sort(arr);
         Arrays.sort(expected);
         assertArrayEquals(expected, arr);
     }
