@@ -13,7 +13,7 @@ public class ParallelMergeSort {
         final var left = new SortTaskInformation(0, arr.length);
         final var right = new SortTaskInformation(arr.length, 0);
 
-        ForkJoinPool pool = new ForkJoinPool(1000);
+        ForkJoinPool pool = ForkJoinPool.commonPool();
         try {
             pool.invoke(new ParallelMergeSortTask(arr, left, right));
         } finally {

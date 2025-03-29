@@ -10,15 +10,18 @@ import static lombok.AccessLevel.PRIVATE;
 @Data
 @FieldDefaults(level = PRIVATE)
 public class TimeForTwoTasksModel {
+    long standardParallelCpuTime;
     long multiCpuTime;
     long singleCpuTime;
     long arraySize;
 
     @Override
     public String toString() {
-        return String.format("Array sizez - %d, single-thread sort - %d, multi-threading sort - %d",
+        return String.format("Array sizes - %d, single-thread sort - %d, my multi-threading sort - %d," +
+                        " standard-parallel sort - %d",
                 arraySize,
+                singleCpuTime,
                 multiCpuTime,
-                singleCpuTime);
+                standardParallelCpuTime);
     }
 }

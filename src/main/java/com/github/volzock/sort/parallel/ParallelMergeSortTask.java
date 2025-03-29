@@ -1,8 +1,6 @@
 package com.github.volzock.sort.parallel;
 
 import com.github.volzock.models.SortTaskInformation;
-import com.github.volzock.sort.MergeSort;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -13,13 +11,14 @@ import static com.github.volzock.sort.MergeSort.sort;
 
 @RequiredArgsConstructor
 public class ParallelMergeSortTask extends RecursiveAction {
+    private static final int THRESHOLD = 100000;
 
     private final int[] array;
     private final SortTaskInformation left;
     private final SortTaskInformation right;
 
     protected void compute() {
-        if (left.length() + right.length() <= 5000000) {
+        if (left.length() + right.length() <= THRESHOLD) {
             sort(array, left, right);
             return;
         }
@@ -33,7 +32,6 @@ public class ParallelMergeSortTask extends RecursiveAction {
                     left.length() - leftHalflength);
 
             final var leftTask = new ParallelMergeSortTask(array, leftLeft, leftRight);
-            leftTask.fork();
             tasksList.add(leftTask);
         }
 
@@ -43,7 +41,6 @@ public class ParallelMergeSortTask extends RecursiveAction {
             final var rightRight = new SortTaskInformation(right.startPosition() + rightHalflength,
                     right.length() - rightHalflength);
             final var rightTask = new ParallelMergeSortTask(array, rightLeft, rightRight);
-            rightTask.fork();
             tasksList.add(rightTask);
         }
 
